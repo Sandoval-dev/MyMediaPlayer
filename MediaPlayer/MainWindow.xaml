@@ -1,0 +1,56 @@
+﻿<Window x:Class="MyMediaPlayer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyMediaPlayer"
+        mc:Ignorable="d"
+        Title="MyMediaPlayer"  Height="514.8" Width="800" AllowDrop="True" Drop="Window_Drop" Icon="media.png"  Loaded="Window_Loaded">
+    <Grid Name="grid1">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="310*"/>
+            <ColumnDefinition Width="87*"/>
+        </Grid.ColumnDefinitions>
+        <MediaElement HorizontalAlignment="Left" Name="media_element1" Height="301" Margin="20,69,0,0" VerticalAlignment="Top" Width="414" MediaOpened="media_element1_MediaOpened" Cursor="None"/>
+        <Button Content="Play"  HorizontalAlignment="Left" FontFamily="Comic Sans MS" Background="ForestGreen"   Margin="20,417,0,0" Name="button1" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.5,0.5" Click="button1_Click" MouseLeave="button1_MouseLeave"/>
+        <Button Content="Pause" HorizontalAlignment="Left"  FontFamily="Comic Sans MS" Background="Orange" Margin="100,417,0,0" Name="button2" VerticalAlignment="Top" Width="75" Click="button2_Click" RenderTransformOrigin="0.525,2.73"/>
+        <Button Content="Stop" HorizontalAlignment="Left" Background="IndianRed" FontFamily="Comic Sans MS" Margin="179,417,0,0" Name="button3" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.354,1.584" Click="button3_Click" MouseLeave="button3_MouseLeave"/>
+        <Slider HorizontalAlignment="Left"  Background="Black" Margin="20,448,10.6,0" Name="slider_seek" VerticalAlignment="Top" Width="763" ValueChanged="slider_seek_ValueChanged" Grid.ColumnSpan="2"/>
+        <Slider HorizontalAlignment="Left" Background="Beige" Margin="610,420,0,0" Name="slider_volume" VerticalAlignment="Top" Width="164" Maximum="1" LargeChange="0.1" SmallChange="0.01" Value="1" ValueChanged="slider_volume_ValueChanged" Grid.ColumnSpan="2"/>
+        <Label Content=" "  Name="mylabel" HorizontalAlignment="Left" Margin="259,411,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.643,-0.118" Width="351"/>
+        <Label Content="Volume"  HorizontalAlignment="Left" Margin="0,395,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" Height="25" Width="51" Grid.Column="1"/>
+        <StackPanel HorizontalAlignment="Left" Height="385" VerticalAlignment="Top" Width="276" Margin="508,10,0,0" Grid.ColumnSpan="2">
+            <GroupBox Header="Medya Adına Göre Filtrele" Height="63" BorderBrush="Red" Margin="10,10,10,10">
+                <DockPanel VerticalAlignment="Center" Margin="2,2,2,-1.4" Height="41">
+                    <Label Margin="0,0,0,9.6" Content="Medya Adı:" />
+                    <TextBox x:Name="txtAra" Margin="0,0,0,14.8" Width="154" Height="24" BorderBrush="Black" SelectionChanged="txtAra_SelectionChanged"/>
+                </DockPanel>
+            </GroupBox>
+            <DataGrid x:Name="dtgMedia" Height="233" SelectionMode="Single" AutoGenerateColumns="False" AlternatingRowBackground="#FFE4DDDD" Margin="0,5" AlternationCount="0" RenderTransformOrigin="0.528,0.507" SelectionChanged="dtgMedia_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Id}" Header="Sıra No" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding mediaName}" Header="Medya İsmi       " />
+                    <DataGridTextColumn Binding="{Binding mediaTarih}" Header="Medya Oynatma Tarihi"/>
+                </DataGrid.Columns>
+
+
+
+            </DataGrid>
+
+
+        </StackPanel>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Id:" VerticalAlignment="Top" Margin="508,335,0,0"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="İsim:" VerticalAlignment="Top" Margin="508,355,0,0"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Tarih:" VerticalAlignment="Top" Margin="508,371,0,0"/>
+        <TextBox Name="Idtxt" HorizontalAlignment="Left" Height="14" TextWrapping="Wrap" Text="{Binding Id}" VerticalAlignment="Top" Width="111" Margin="535,336,0,0" Grid.ColumnSpan="2" IsEnabled="False"/>
+        <TextBox Name="videoNametxt" HorizontalAlignment="Left" Height="14" TextWrapping="Wrap" Text="{Binding mediaName}" VerticalAlignment="Top" Width="111" Margin="535,356,0,0" Grid.ColumnSpan="2" />
+        <TextBox Name="Tarihtxt" HorizontalAlignment="Left" Height="14" TextWrapping="Wrap" Text="{Binding mediaTarih}" VerticalAlignment="Top" Width="111" Margin="535,372,0,0" Grid.ColumnSpan="2" />
+        <Button Name="btnEkle" Content="Ekle" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="79,336,0,0" Grid.Column="1" Height="17" Click="btnEkle_Click"/>
+        <Button Name="btnTemizle" Content="Temizle" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="79,394,0,0" Grid.Column="1" Height="17" Click="btnTemizle_Click"/>
+        <Button Name="btnSil" Content="Sil" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="79,375,0,0" Grid.Column="1" Height="17" Click="btnSil_Click"/>
+        <Button Name="btnGuncelle" Content="Güncelle" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="79,355,0,0" Grid.Column="1" Click="btnGuncelle_Click"/>
+
+
+
+    </Grid>
+</Window>
